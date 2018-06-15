@@ -1,18 +1,19 @@
 OUT_PATH  = lib
 SRC_PATH  = jni
 INC_PATH  = $(SRC_PATH)/include
+DEBUG     = WOLFCRYPT_JNI_DEBUG_ON
 
 OBJ_LIST  = jni_fips.o jni_native_struct.o jni_aes.o jni_des3.o jni_md5.o \
 			jni_sha.o jni_hmac.o jni_rng.o jni_rsa.o jni_dh.o jni_ecc.o \
 			jni_error.o jni_asn.o jni_logging.o
 OBJS      = $(patsubst %,$(OUT_PATH)/%,$(OBJ_LIST))
-TARGET    = $(OUT_PATH)/libwolfcryptjni.jnilib
+TARGET    = $(OUT_PATH)/libwolfcryptjni.so
 
-JAVA_HOME = $(shell /usr/libexec/java_home)
+JAVA_HOME = $(shell readlink -f /usr/bin/javac | sed "s:/bin/javac::")
 CC        = gcc
-CCFLAGS   = -Wall -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/darwin \
-			-I$(INC_PATH)
-LDFLAGS   = -dynamiclib -framework JavaVM -lwolfssl
+CCFLAGS   = -Wall -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/linux \
+			-I$(INC_PATH) -I/var/lib/jenkins/wolf-install/include -fPIC #-D$(DEBUG)
+LDFLAGS   = -Wl,--no-as-needed -lwolfssl -shared
 
 all: $(TARGET)
 
