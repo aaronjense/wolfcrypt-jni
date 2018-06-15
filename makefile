@@ -13,7 +13,7 @@ JAVA_HOME = $(shell readlink -f /usr/bin/javac | sed "s:/bin/javac::")
 CC        = gcc
 CCFLAGS   = -Wall -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/linux \
 			-I$(INC_PATH) -I/var/lib/jenkins/wolf-install/include -fPIC #-D$(DEBUG)
-LDFLAGS   = -Wl,--no-as-needed -lwolfssl -shared
+LDFLAGS   = -Wl,--no-as-needed -/var/lib/jenkins/wolf-install/lib -shared
 
 all: $(TARGET)
 
