@@ -124,7 +124,7 @@ public class WolfCryptKeyPairGenerator extends KeyPairGeneratorSpi {
 
                 if (!(params instanceof ECGenParameterSpec)) {
                     throw new InvalidAlgorithmParameterException(
-                        "params must be of type ECCGenParameterSpec");
+                        "params must be of type ECGenParameterSpec");
                 }
 
                 ECGenParameterSpec eccSpec = (ECGenParameterSpec)params;
