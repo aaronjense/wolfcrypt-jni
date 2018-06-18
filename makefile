@@ -11,7 +11,7 @@ TARGET    = $(OUT_PATH)/libwolfcryptjni.so
 JAVA_HOME = $(shell readlink -f /usr/bin/javac | sed "s:/bin/javac::")
 CC        = gcc
 CCFLAGS   = -Wall -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/linux \
-			-I$(INC_PATH) -fPIC
+			-I$(INC_PATH) -ILD_LIBRARY_PATH -fPIC
 LDFLAGS   = -Wl,--no-as-needed -lwolfssl -shared
 
 all: $(TARGET)
