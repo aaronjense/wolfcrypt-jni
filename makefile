@@ -12,8 +12,8 @@ TARGET    = $(OUT_PATH)/libwolfcryptjni.so
 JAVA_HOME = $(shell readlink -f /usr/bin/javac | sed "s:/bin/javac::")
 CC        = gcc
 CCFLAGS   = -Wall -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/linux \
-			-I$(INC_PATH) -I/var/lib/jenkins/wolf-install/include -fPIC #-D$(DEBUG)
-LDFLAGS   = -Wl,--no-as-needed -L/var/lib/jenkins/wolf-install/lib -shared
+			-I$(INC_PATH) -I/home/user/wolf-install/include -fPIC #-D$(DEBUG)
+LDFLAGS   = -Wl,--no-as-needed -L/home/user/wolf-install/lib -lwolfssl -shared
 
 all: $(TARGET)
 
