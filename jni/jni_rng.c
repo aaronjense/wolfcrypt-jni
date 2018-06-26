@@ -150,7 +150,6 @@ JNIEXPORT void JNICALL Java_com_wolfssl_wolfcrypt_Rng_rngGenerateBlock___3BII(
     }
     else if (length == 0) {
         /* Don't operate on array with size 0 */
-        releaseByteArray(env, buffer_buffer, (byte*)buffer, ret);
         return;
     }
 
