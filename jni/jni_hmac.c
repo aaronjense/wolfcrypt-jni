@@ -32,7 +32,7 @@
 #include <wolfcrypt_jni_debug.h>
 
 /* copy from cyassl/hmac.c */
-static INLINE int GetHashSizeByType(int type)
+static WC_INLINE int GetHashSizeByType(int type)
 {
     if (!(type == WC_MD5 || type == WC_SHA    || type == WC_SHA256 || type == WC_SHA384
                       || type == WC_SHA512 || type == BLAKE2B_ID))
