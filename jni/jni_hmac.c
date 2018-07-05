@@ -31,11 +31,15 @@
 /* #define WOLFCRYPT_JNI_DEBUG_ON */
 #include <wolfcrypt_jni_debug.h>
 
+#ifdef HAVE_FIPS
+#define WC_INLINE INLINE
+#endif
+
 /* copy from cyassl/hmac.c */
-static INLINE int GetHashSizeByType(int type)
+static WC_INLINE int GetHashSizeByType(int type)
 {
-    if (!(type == WC_MD5 || type == WC_SHA    || type == WC_SHA256 || type == WC_SHA384
-                      || type == WC_SHA512 || type == BLAKE2B_ID))
+    if (!(type == WC_MD5 || type == WC_SHA || type == WC_SHA256
+            || type == WC_SHA384 || type == WC_SHA512 || type == BLAKE2B_ID))
         return BAD_FUNC_ARG;
 
     switch (type) {
@@ -297,5 +301,59 @@ Java_com_wolfssl_wolfcrypt_Hmac_wc_1HmacSizeByType(
     throwNotCompiledInException(env);
 #endif
 
+    return result;
+}
+
+JNIEXPORT jint JNICALL
+Java_com_wolfssl_wolfcrypt_Hmac_getCodeMd5(
+        JNIEnv* env, jobject this)
+{
+    jint result = WC_MD5;
+    LogStr("WC_MD5 = %d\n", result);
+    return result;
+}
+
+JNIEXPORT jint JNICALL
+Java_com_wolfssl_wolfcrypt_Hmac_getCodeSha(
+        JNIEnv* env, jobject this)
+{
+    jint result = WC_SHA;
+    LogStr("WC_SHA = %d\n", result);
+    return result;
+}
+
+JNIEXPORT jint JNICALL
+Java_com_wolfssl_wolfcrypt_Hmac_getCodeSha256(
+        JNIEnv* env, jobject this)
+{
+    jint result = WC_SHA256;
+    LogStr("WC_SHA256 = %d\n", result);
+    return result;
+}
+
+JNIEXPORT jint JNICALL
+Java_com_wolfssl_wolfcrypt_Hmac_getCodeSha384(
+        JNIEnv* env, jobject this)
+{
+    jint result = WC_SHA384;
+    LogStr("WC_SHA384 = %d\n", result);
+    return result;
+}
+
+JNIEXPORT jint JNICALL
+Java_com_wolfssl_wolfcrypt_Hmac_getCodeSha512(
+        JNIEnv* env, jobject this)
+{
+    jint result = WC_SHA512;
+    LogStr("WC_SHA512 = %d\n", result);
+    return result;
+}
+
+JNIEXPORT jint JNICALL
+Java_com_wolfssl_wolfcrypt_Hmac_getCodeBlake2b(
+        JNIEnv* env, jobject this)
+{
+    jint result = BLAKE2B_ID;
+    LogStr("BLAKE2B_ID = %d", result);
     return result;
 }
