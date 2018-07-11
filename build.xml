@@ -35,6 +35,7 @@
     <property name="hamcrest-core" value="hamcrest-core-1.3.jar" />
     <property name="ant-junit4" value="ant/ant-junit4.jar" />
     <property name="jce.debug" value="false" />
+    <property name="compiler.args" value="-Xlint:-options" />
 
     <!-- property file for code signing -->
     <property file="codeSigning.properties" />
@@ -101,7 +102,7 @@
             target="${java.target}"
             classpathref="classpath"
             includeantruntime="false">
-            <compilerarg value="-Xlint:-options" />
+            <compilerarg value="${compiler.args}" />
         </javac>
     </target>
 
@@ -215,7 +216,7 @@
             classpathref="classpath"
             includeantruntime="false">
             <exclude name="com/wolfssl/provider/jce/test/**" unless="jar.includes.jce"/>
-            <compilerarg value="-Xlint:-options" />
+            <compilerarg value="${compiler.args}" />
         </javac>
 
     </target>
